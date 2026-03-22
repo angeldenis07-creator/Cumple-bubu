@@ -6,48 +6,45 @@
   <title>Feliz Cumpleaños Mi Amor</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     :root {
-      --bg-1: #04152c;
-      --bg-2: #08244a;
-      --bg-3: #0b2f63;
+      --bg1: #04152c;
+      --bg2: #08244a;
+      --bg3: #0b2f63;
       --gold: #ffef75;
       --gold-soft: #ffe890;
-      --pink-1: #ff5e96;
-      --pink-2: #ff2f7f;
-      --pink-3: #ff98bd;
-      --purple: #a92ce8;
-      --green-1: #15c94f;
-      --green-2: #29e26a;
+      --pink1: #ff5e96;
+      --pink2: #ff2f7f;
+      --green1: #15c94f;
+      --green2: #29e26a;
       --white: #ffffff;
-      --glass: rgba(255, 255, 255, 0.08);
-      --glass-2: rgba(255, 255, 255, 0.12);
-      --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      --glass: rgba(255,255,255,0.08);
+      --glass2: rgba(255,255,255,0.12);
+      --shadow: 0 16px 40px rgba(0,0,0,0.35);
     }
 
     html, body {
-      width: 100%;
       min-height: 100%;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.06), transparent 28%),
-        linear-gradient(180deg, var(--bg-3), var(--bg-2) 45%, var(--bg-1));
-      color: var(--white);
-      font-family: Georgia, "Times New Roman", serif;
-      overflow-x: hidden;
     }
 
     body {
-      position: relative;
       min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.06), transparent 28%),
+        linear-gradient(180deg, var(--bg3), var(--bg2) 45%, var(--bg1));
+      position: relative;
     }
 
+    .stars-layer,
     .petals-layer,
-    .pollen-layer,
-    .stars-layer {
+    .pollen-layer {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -65,14 +62,8 @@
     }
 
     @keyframes twinkle {
-      0%, 100% {
-        opacity: 0.15;
-        transform: scale(0.8);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.6);
-      }
+      0%, 100% { opacity: 0.15; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.6); }
     }
 
     .falling-petal {
@@ -84,7 +75,6 @@
       background: radial-gradient(circle at 30% 30%, #ffd2e2, #ff6ca0 58%, #ba1359 100%);
       opacity: 0.9;
       animation: fall linear infinite;
-      filter: blur(0.2px);
     }
 
     .pollen-dot {
@@ -104,9 +94,7 @@
         transform: translate3d(0, -20px, 0) rotate(0deg);
         opacity: 0;
       }
-      10% {
-        opacity: 1;
-      }
+      10% { opacity: 1; }
       100% {
         transform: translate3d(var(--drift), 110vh, 0) rotate(360deg);
         opacity: 0;
@@ -117,45 +105,28 @@
       position: relative;
       z-index: 2;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 14px;
+      display: grid;
+      place-items: center;
+      padding: 20px 12px;
     }
 
-    .scene {
-      width: min(100%, 1100px);
-      min-height: 88vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .intro-view,
-    .gift-view {
-      width: 100%;
-      position: relative;
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .hidden {
-      opacity: 0;
-      transform: translateY(20px);
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-      visibility: hidden;
-    }
-
-    .intro-wrap {
-      position: relative;
+    .screen {
       width: min(100%, 980px);
-      min-height: 760px;
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* INTRO */
+    .intro-box {
+      width: 100%;
+      max-width: 980px;
+      aspect-ratio: 980 / 760;
+      min-height: 560px;
+      position: relative;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .floral-frame {
@@ -163,29 +134,32 @@
       inset: 0;
       width: 100%;
       height: 100%;
+      display: block;
       z-index: 1;
     }
 
     .center-content {
-      position: relative;
+      position: absolute;
+      inset: 0;
       z-index: 3;
-      width: min(92%, 620px);
+      display: grid;
+      place-items: center;
       text-align: center;
-      padding: 30px 20px;
+      padding: 24px;
+    }
+
+    .center-inner {
+      width: min(90%, 620px);
       animation: floatBox 3.5s ease-in-out infinite;
     }
 
     @keyframes floatBox {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-7px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
     }
 
     .title {
-      font-size: clamp(2.4rem, 6vw, 4.9rem);
+      font-size: clamp(2.2rem, 6vw, 5rem);
       line-height: 0.98;
       color: var(--gold);
       text-shadow:
@@ -196,11 +170,11 @@
     }
 
     .subtitle {
-      font-size: clamp(1.15rem, 2.6vw, 2rem);
+      font-size: clamp(1.1rem, 2.7vw, 2rem);
       color: var(--gold-soft);
       font-style: italic;
-      text-shadow: 0 0 10px rgba(255, 232, 144, 0.18);
       margin-bottom: 22px;
+      text-shadow: 0 0 10px rgba(255, 232, 144, 0.18);
     }
 
     .open-btn {
@@ -210,7 +184,7 @@
       font-size: 1.02rem;
       font-weight: 700;
       color: white;
-      background: linear-gradient(180deg, var(--pink-1), var(--pink-2));
+      background: linear-gradient(180deg, var(--pink1), var(--pink2));
       box-shadow:
         0 10px 28px rgba(255, 60, 130, 0.35),
         0 0 24px rgba(255, 80, 150, 0.2);
@@ -221,14 +195,18 @@
     .open-btn:hover,
     .open-btn:active {
       transform: scale(1.05);
-      box-shadow:
-        0 14px 34px rgba(255, 60, 130, 0.42),
-        0 0 30px rgba(255, 80, 150, 0.26);
     }
 
-    .gift-view {
-      max-width: 760px;
+    /* GIFT */
+    .gift-card {
+      width: min(100%, 760px);
       margin: 0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(7px);
+      padding: 18px;
       animation: fadeUp 0.7s ease;
     }
 
@@ -241,17 +219,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    .gift-card {
-      position: relative;
-      z-index: 3;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(7px);
-      padding: 18px;
     }
 
     .gift-image-wrap {
@@ -287,18 +254,13 @@
     }
 
     @keyframes beat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      30% {
-        transform: scale(1.16);
-      }
-      50% {
-        transform: scale(0.98);
-      }
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.16); }
+      50% { transform: scale(0.98); }
     }
 
     .gift-back {
+      display: inline-block;
       margin-top: 14px;
       background: transparent;
       color: rgba(255,255,255,0.9);
@@ -307,17 +269,12 @@
       padding: 11px 18px;
       font-size: 0.95rem;
       cursor: pointer;
-      transition: 0.2s ease;
     }
 
-    .gift-back:hover,
-    .gift-back:active {
-      background: rgba(255,255,255,0.08);
-    }
-
+    /* FLORAL SVG */
     .flower-branch {
       fill: none;
-      stroke: var(--green-2);
+      stroke: var(--green2);
       stroke-width: 4;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -326,22 +283,12 @@
       animation: drawBranch 3.1s ease forwards;
     }
 
-    .flower-branch.delay-1 {
-      animation-delay: 0.15s;
-    }
-
-    .flower-branch.delay-2 {
-      animation-delay: 0.35s;
-    }
-
-    .flower-branch.delay-3 {
-      animation-delay: 0.5s;
-    }
+    .flower-branch.delay-1 { animation-delay: 0.15s; }
+    .flower-branch.delay-2 { animation-delay: 0.35s; }
+    .flower-branch.delay-3 { animation-delay: 0.5s; }
 
     @keyframes drawBranch {
-      to {
-        stroke-dashoffset: 0;
-      }
+      to { stroke-dashoffset: 0; }
     }
 
     .leaf {
@@ -358,14 +305,8 @@
     .leaf.d6 { animation-delay: 1.95s; }
 
     @keyframes popLeaf {
-      from {
-        opacity: 0;
-        transform: scale(0.25);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.25); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .flower {
@@ -378,22 +319,11 @@
     .flower.f2 { animation-delay: 2.3s; }
     .flower.f3 { animation-delay: 2.5s; }
     .flower.f4 { animation-delay: 2.7s; }
-    .flower.f5 { animation-delay: 2.9s; }
-    .flower.f6 { animation-delay: 3.1s; }
 
     @keyframes bloom {
-      0% {
-        opacity: 0;
-        transform: scale(0.2) rotate(-10deg);
-      }
-      70% {
-        opacity: 1;
-        transform: scale(1.08) rotate(4deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-      }
+      0% { opacity: 0; transform: scale(0.2) rotate(-10deg); }
+      70% { opacity: 1; transform: scale(1.08) rotate(4deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
     }
 
     .spark {
@@ -405,64 +335,24 @@
     .spark.s2 { animation-delay: 1s; }
     .spark.s3 { animation-delay: 1.6s; }
     .spark.s4 { animation-delay: 2.2s; }
-    .spark.s5 { animation-delay: 2.8s; }
-    .spark.s6 { animation-delay: 3.2s; }
 
     @keyframes sparkle {
-      0%, 100% {
-        opacity: 0.15;
-        transform: scale(0.75);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.25);
-      }
+      0%, 100% { opacity: 0.15; transform: scale(0.75); }
+      50% { opacity: 1; transform: scale(1.25); }
     }
 
-    .mini-flower {
-      opacity: 0;
-      animation: bloom 0.7s ease forwards;
-    }
-
-    .mini-flower.m1 { animation-delay: 2.2s; }
-    .mini-flower.m2 { animation-delay: 2.45s; }
-    .mini-flower.m3 { animation-delay: 2.7s; }
-    .mini-flower.m4 { animation-delay: 2.95s; }
-
-    @media (max-width: 900px) {
-      .intro-wrap {
-        min-height: 680px;
+    @media (max-width: 760px) {
+      .intro-box {
+        aspect-ratio: auto;
+        min-height: 72vh;
       }
 
       .title {
-        font-size: clamp(2.1rem, 8vw, 4rem);
+        font-size: clamp(2rem, 9vw, 3.8rem);
       }
 
       .subtitle {
-        font-size: clamp(1rem, 3.4vw, 1.6rem);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .app {
-        padding: 18px 10px;
-      }
-
-      .scene {
-        min-height: 92vh;
-      }
-
-      .intro-wrap {
-        min-height: 620px;
-      }
-
-      .center-content {
-        width: 92%;
-        padding: 16px 10px;
-      }
-
-      .gift-card {
-        padding: 14px;
+        font-size: clamp(1rem, 4vw, 1.45rem);
       }
 
       .gift-image {
@@ -482,181 +372,114 @@
   <div class="pollen-layer" id="pollen"></div>
 
   <main class="app">
-    <section class="scene">
+    <section class="screen active" id="introScreen">
+      <div class="intro-box">
+        <svg class="floral-frame" viewBox="0 0 980 760" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
 
-      <div class="intro-view" id="introView">
-        <div class="intro-wrap">
-          <svg class="floral-frame" viewBox="0 0 980 760" xmlns="http://www.w3.org/2000/svg">
+          <!-- IZQUIERDA -->
+          <path class="flower-branch" d="M452 660 C382 620, 320 612, 266 545 C210 476, 204 388, 248 314 C284 256, 308 208, 296 146" />
+          <path class="flower-branch delay-1" d="M430 650 C350 620, 274 622, 205 584 C154 556, 126 512, 114 462" />
+          <path class="flower-branch delay-2" d="M407 648 C342 646, 284 666, 224 707" />
+          <path class="flower-branch delay-3" d="M412 610 C350 582, 292 548, 260 486" />
+          <path class="flower-branch delay-1" d="M350 232 C326 192, 310 164, 282 132" />
 
-            <!-- IZQUIERDA -->
-            <path class="flower-branch" d="M452 660
-              C382 620, 320 612, 266 545
-              C210 476, 204 388, 248 314
-              C284 256, 308 208, 296 146" />
+          <!-- DERECHA -->
+          <path class="flower-branch" d="M528 660 C598 620, 660 612, 714 545 C770 476, 776 388, 732 314 C696 256, 672 208, 684 146" />
+          <path class="flower-branch delay-1" d="M550 650 C630 620, 706 622, 775 584 C826 556, 854 512, 866 462" />
+          <path class="flower-branch delay-2" d="M573 648 C638 646, 696 666, 756 707" />
+          <path class="flower-branch delay-3" d="M568 610 C630 582, 688 548, 720 486" />
+          <path class="flower-branch delay-1" d="M630 232 C654 192, 670 164, 698 132" />
 
-            <path class="flower-branch delay-1" d="M430 650
-              C350 620, 274 622, 205 584
-              C154 556, 126 512, 114 462" />
+          <!-- BASE -->
+          <path class="flower-branch delay-2" d="M455 660 C470 690, 480 712, 490 730 C500 712, 510 690, 525 660" />
 
-            <path class="flower-branch delay-2" d="M407 648
-              C342 646, 284 666, 224 707" />
+          <!-- HOJAS -->
+          <ellipse class="leaf d1" cx="254" cy="560" rx="18" ry="46" fill="#12bf4a" transform="rotate(-62 254 560)" />
+          <ellipse class="leaf d2" cx="210" cy="472" rx="16" ry="40" fill="#12bf4a" transform="rotate(-40 210 472)" />
+          <ellipse class="leaf d3" cx="285" cy="260" rx="16" ry="44" fill="#12bf4a" transform="rotate(28 285 260)" />
+          <ellipse class="leaf d4" cx="328" cy="176" rx="15" ry="40" fill="#12bf4a" transform="rotate(48 328 176)" />
 
-            <path class="flower-branch delay-3" d="M412 610
-              C350 582, 292 548, 260 486" />
+          <ellipse class="leaf d1" cx="726" cy="560" rx="18" ry="46" fill="#12bf4a" transform="rotate(62 726 560)" />
+          <ellipse class="leaf d2" cx="770" cy="472" rx="16" ry="40" fill="#12bf4a" transform="rotate(40 770 472)" />
+          <ellipse class="leaf d3" cx="695" cy="260" rx="16" ry="44" fill="#12bf4a" transform="rotate(-28 695 260)" />
+          <ellipse class="leaf d4" cx="652" cy="176" rx="15" ry="40" fill="#12bf4a" transform="rotate(-48 652 176)" />
 
-            <path class="flower-branch delay-1" d="M350 232
-              C326 192, 310 164, 282 132" />
+          <!-- FLORES -->
+          <g class="flower f1" transform="translate(248 392)">
+            <ellipse cx="0" cy="-22" rx="22" ry="58" fill="#a72be8"/>
+            <ellipse cx="-24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(-28)"/>
+            <ellipse cx="24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(28)"/>
+            <ellipse cx="-38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(-52)"/>
+            <ellipse cx="38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(52)"/>
+            <rect x="-8" y="48" width="16" height="44" rx="8" fill="#d7a9bb"/>
+          </g>
 
-            <path class="flower-branch delay-2" d="M280 520
-              C250 502, 222 482, 205 454" />
+          <g class="flower f2" transform="translate(306 200) scale(.82)">
+            <ellipse cx="0" cy="-22" rx="20" ry="52" fill="#a72be8"/>
+            <ellipse cx="-22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(-28)"/>
+            <ellipse cx="22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(28)"/>
+            <ellipse cx="-34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(-52)"/>
+            <ellipse cx="34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(52)"/>
+            <rect x="-7" y="42" width="14" height="36" rx="7" fill="#d7a9bb"/>
+          </g>
 
-            <!-- DERECHA -->
-            <path class="flower-branch" d="M528 660
-              C598 620, 660 612, 714 545
-              C770 476, 776 388, 732 314
-              C696 256, 672 208, 684 146" />
+          <g class="flower f3" transform="translate(732 392)">
+            <ellipse cx="0" cy="-22" rx="22" ry="58" fill="#a72be8"/>
+            <ellipse cx="-24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(-28)"/>
+            <ellipse cx="24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(28)"/>
+            <ellipse cx="-38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(-52)"/>
+            <ellipse cx="38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(52)"/>
+            <rect x="-8" y="48" width="16" height="44" rx="8" fill="#d7a9bb"/>
+          </g>
 
-            <path class="flower-branch delay-1" d="M550 650
-              C630 620, 706 622, 775 584
-              C826 556, 854 512, 866 462" />
+          <g class="flower f4" transform="translate(674 200) scale(.82)">
+            <ellipse cx="0" cy="-22" rx="20" ry="52" fill="#a72be8"/>
+            <ellipse cx="-22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(-28)"/>
+            <ellipse cx="22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(28)"/>
+            <ellipse cx="-34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(-52)"/>
+            <ellipse cx="34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(52)"/>
+            <rect x="-7" y="42" width="14" height="36" rx="7" fill="#d7a9bb"/>
+          </g>
 
-            <path class="flower-branch delay-2" d="M573 648
-              C638 646, 696 666, 756 707" />
+          <!-- BRILLOS -->
+          <circle class="spark s1" cx="180" cy="118" r="4" fill="white"/>
+          <circle class="spark s2" cx="260" cy="438" r="3" fill="white"/>
+          <circle class="spark s3" cx="800" cy="118" r="4" fill="white"/>
+          <circle class="spark s4" cx="720" cy="438" r="3" fill="white"/>
+        </svg>
 
-            <path class="flower-branch delay-3" d="M568 610
-              C630 582, 688 548, 720 486" />
-
-            <path class="flower-branch delay-1" d="M630 232
-              C654 192, 670 164, 698 132" />
-
-            <path class="flower-branch delay-2" d="M700 520
-              C730 502, 758 482, 775 454" />
-
-            <!-- BASE -->
-            <path class="flower-branch delay-2" d="M455 660 C470 690, 480 712, 490 730 C500 712, 510 690, 525 660" />
-
-            <!-- HOJAS IZQ -->
-            <ellipse class="leaf d1" cx="254" cy="560" rx="18" ry="46" fill="#12bf4a" transform="rotate(-62 254 560)" />
-            <ellipse class="leaf d2" cx="210" cy="472" rx="16" ry="40" fill="#12bf4a" transform="rotate(-40 210 472)" />
-            <ellipse class="leaf d3" cx="285" cy="260" rx="16" ry="44" fill="#12bf4a" transform="rotate(28 285 260)" />
-            <ellipse class="leaf d4" cx="328" cy="176" rx="15" ry="40" fill="#12bf4a" transform="rotate(48 328 176)" />
-            <ellipse class="leaf d5" cx="168" cy="616" rx="16" ry="46" fill="#12bf4a" transform="rotate(-70 168 616)" />
-            <ellipse class="leaf d6" cx="237" cy="498" rx="15" ry="38" fill="#12bf4a" transform="rotate(-18 237 498)" />
-
-            <!-- HOJAS DER -->
-            <ellipse class="leaf d1" cx="726" cy="560" rx="18" ry="46" fill="#12bf4a" transform="rotate(62 726 560)" />
-            <ellipse class="leaf d2" cx="770" cy="472" rx="16" ry="40" fill="#12bf4a" transform="rotate(40 770 472)" />
-            <ellipse class="leaf d3" cx="695" cy="260" rx="16" ry="44" fill="#12bf4a" transform="rotate(-28 695 260)" />
-            <ellipse class="leaf d4" cx="652" cy="176" rx="15" ry="40" fill="#12bf4a" transform="rotate(-48 652 176)" />
-            <ellipse class="leaf d5" cx="812" cy="616" rx="16" ry="46" fill="#12bf4a" transform="rotate(70 812 616)" />
-            <ellipse class="leaf d6" cx="743" cy="498" rx="15" ry="38" fill="#12bf4a" transform="rotate(18 743 498)" />
-
-            <!-- FLORES GRANDES IZQ -->
-            <g class="flower f1" transform="translate(248 392)">
-              <ellipse cx="0" cy="-22" rx="22" ry="58" fill="#a72be8"/>
-              <ellipse cx="-24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(-28)"/>
-              <ellipse cx="24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(28)"/>
-              <ellipse cx="-38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(-52)"/>
-              <ellipse cx="38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(52)"/>
-              <rect x="-8" y="48" width="16" height="44" rx="8" fill="#d7a9bb"/>
-              <line x1="0" y1="54" x2="0" y2="90" stroke="#ffd5e3" stroke-width="2"/>
-            </g>
-
-            <g class="flower f2" transform="translate(306 200) scale(.82)">
-              <ellipse cx="0" cy="-22" rx="20" ry="52" fill="#a72be8"/>
-              <ellipse cx="-22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(-28)"/>
-              <ellipse cx="22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(28)"/>
-              <ellipse cx="-34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(-52)"/>
-              <ellipse cx="34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(52)"/>
-              <rect x="-7" y="42" width="14" height="36" rx="7" fill="#d7a9bb"/>
-            </g>
-
-            <!-- FLORES GRANDES DER -->
-            <g class="flower f3" transform="translate(732 392)">
-              <ellipse cx="0" cy="-22" rx="22" ry="58" fill="#a72be8"/>
-              <ellipse cx="-24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(-28)"/>
-              <ellipse cx="24" cy="0" rx="24" ry="58" fill="#f94a82" transform="rotate(28)"/>
-              <ellipse cx="-38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(-52)"/>
-              <ellipse cx="38" cy="16" rx="21" ry="50" fill="#ff689c" transform="rotate(52)"/>
-              <rect x="-8" y="48" width="16" height="44" rx="8" fill="#d7a9bb"/>
-              <line x1="0" y1="54" x2="0" y2="90" stroke="#ffd5e3" stroke-width="2"/>
-            </g>
-
-            <g class="flower f4" transform="translate(674 200) scale(.82)">
-              <ellipse cx="0" cy="-22" rx="20" ry="52" fill="#a72be8"/>
-              <ellipse cx="-22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(-28)"/>
-              <ellipse cx="22" cy="0" rx="22" ry="52" fill="#f94a82" transform="rotate(28)"/>
-              <ellipse cx="-34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(-52)"/>
-              <ellipse cx="34" cy="14" rx="18" ry="44" fill="#ff689c" transform="rotate(52)"/>
-              <rect x="-7" y="42" width="14" height="36" rx="7" fill="#d7a9bb"/>
-            </g>
-
-            <!-- FLORES PEQUEÑAS -->
-            <g class="mini-flower m1" transform="translate(324 470) scale(.62)">
-              <ellipse cx="-14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(-26)"/>
-              <ellipse cx="14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(26)"/>
-              <ellipse cx="0" cy="-10" rx="9" ry="20" fill="#ff7cab"/>
-            </g>
-
-            <g class="mini-flower m2" transform="translate(656 470) scale(.62)">
-              <ellipse cx="-14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(-26)"/>
-              <ellipse cx="14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(26)"/>
-              <ellipse cx="0" cy="-10" rx="9" ry="20" fill="#ff7cab"/>
-            </g>
-
-            <g class="mini-flower m3" transform="translate(222 548) scale(.58)">
-              <ellipse cx="-14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(-26)"/>
-              <ellipse cx="14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(26)"/>
-              <ellipse cx="0" cy="-10" rx="9" ry="20" fill="#ff7cab"/>
-            </g>
-
-            <g class="mini-flower m4" transform="translate(758 548) scale(.58)">
-              <ellipse cx="-14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(-26)"/>
-              <ellipse cx="14" cy="0" rx="10" ry="24" fill="#ff5d92" transform="rotate(26)"/>
-              <ellipse cx="0" cy="-10" rx="9" ry="20" fill="#ff7cab"/>
-            </g>
-
-            <!-- BRILLOS -->
-            <circle class="spark s1" cx="180" cy="118" r="4" fill="white"/>
-            <circle class="spark s2" cx="260" cy="438" r="3" fill="white"/>
-            <circle class="spark s3" cx="800" cy="118" r="4" fill="white"/>
-            <circle class="spark s4" cx="720" cy="438" r="3" fill="white"/>
-            <circle class="spark s5" cx="316" cy="148" r="2.5" fill="#ffe67e"/>
-            <circle class="spark s6" cx="664" cy="148" r="2.5" fill="#ffe67e"/>
-          </svg>
-
-          <div class="center-content">
+        <div class="center-content">
+          <div class="center-inner">
             <h1 class="title">FELIZ<br>CUMPLEAÑOS<br>MI AMOR</h1>
             <p class="subtitle">Tengo un regalo para ti ✨</p>
             <button class="open-btn" id="openGiftBtn">Abre tu regalo</button>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="gift-view hidden" id="giftView">
-        <div class="gift-card">
-          <div class="gift-image-wrap">
-            <img class="gift-image" src="bubu.gif" alt="Regalo romántico animado">
-          </div>
+    <section class="screen" id="giftScreen">
+      <div class="gift-card">
+        <div class="gift-image-wrap">
+          <img class="gift-image" src="bubu.gif" alt="Regalo romántico animado">
+        </div>
 
-          <div class="message-box">
-            <span class="heart">💖</span>
-            te amo mucho, cada día contigo es un avance, quiero que sepas que sí eres lo más importante para mí.
+        <div class="message-box">
+          <span class="heart">💖</span>
+          te amo mucho, cada día contigo es un avance, quiero que sepas que sí eres lo más importante para mí.
 
-            Son tiempos difíciles para mí, no es que deje de ser detallista, pero ser adulto es difícil...
+          Son tiempos difíciles para mí, no es que deje de ser detallista, pero ser adulto es difícil...
 
-            Solo sé que estar a tu lado es más fácil y me siento feliz. Estando contigo vuelvo a estar feliz y olvidar los dolores.
+          Solo sé que estar a tu lado es más fácil y me siento feliz. Estando contigo vuelvo a estar feliz y olvidar los dolores.
 
-            Gracias por ser mi bubu.
-            <span class="heart">💖</span>
-          </div>
+          Gracias por ser mi bubu.
+          <span class="heart">💖</span>
+        </div>
 
-          <div style="text-align:center;">
-            <button class="gift-back" id="backBtn">Volver</button>
-          </div>
+        <div style="text-align:center;">
+          <button class="gift-back" id="backBtn">Volver</button>
         </div>
       </div>
-
     </section>
   </main>
 
@@ -664,8 +487,9 @@
     const starsLayer = document.getElementById("stars");
     const petalsLayer = document.getElementById("petals");
     const pollenLayer = document.getElementById("pollen");
-    const introView = document.getElementById("introView");
-    const giftView = document.getElementById("giftView");
+
+    const introScreen = document.getElementById("introScreen");
+    const giftScreen = document.getElementById("giftScreen");
     const openGiftBtn = document.getElementById("openGiftBtn");
     const backBtn = document.getElementById("backBtn");
 
@@ -706,13 +530,15 @@
     }
 
     function showGift() {
-      introView.classList.add("hidden");
-      giftView.classList.remove("hidden");
+      introScreen.classList.remove("active");
+      giftScreen.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function showIntro() {
-      giftView.classList.add("hidden");
-      introView.classList.remove("hidden");
+      giftScreen.classList.remove("active");
+      introScreen.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     openGiftBtn.addEventListener("click", showGift);
