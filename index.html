@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Cumpleaños Mi Amor</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      min-height:100vh;
+      overflow:hidden;
+      font-family: "Georgia", serif;
+      background: radial-gradient(circle at top, #0d2d55 0%, #071a33 45%, #04111f 100%);
+      color:white;
+      position:relative;
+    }
+
+    .container{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      position:relative;
+      z-index:2;
+    }
+
+    .scene{
+      width:min(95vw,900px);
+      height:min(92vh,760px);
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .center-box{
+      position:absolute;
+      z-index:5;
+      text-align:center;
+      width:min(90%, 560px);
+      animation: fadeUp 1.2s ease;
+    }
+
+    h1{
+      font-size:clamp(2rem, 6vw, 4.2rem);
+      line-height:1.05;
+      color:#fff36a;
+      text-shadow:0 0 14px rgba(255,243,106,.25);
+      margin-bottom:14px;
+      letter-spacing:1px;
+    }
+
+    .subtitle{
+      font-size:clamp(1rem, 3vw, 1.7rem);
+      color:#ffe86d;
+      font-style:italic;
+      margin-bottom:22px;
+      text-shadow:0 0 8px rgba(255,232,109,.22);
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 34px;
+      font-size:1rem;
+      font-weight:700;
+      color:white;
+      cursor:pointer;
+      background: linear-gradient(180deg, #ff5f9e, #ff2e78);
+      box-shadow:0 8px 24px rgba(255,60,130,.35);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover,
+    .btn:active{
+      transform:scale(1.05);
+      box-shadow:0 10px 28px rgba(255,60,130,.42);
+    }
+
+    .gift-screen{
+      display:none;
+      text-align:center;
+      width:min(92vw,700px);
+      animation: fadeUp .8s ease;
+      z-index:6;
+    }
+
+    .gift-box{
+      background:rgba(255,255,255,.07);
+      border-radius:26px;
+      padding:14px;
+      box-shadow:0 14px 35px rgba(0,0,0,.35);
+      margin-bottom:18px;
+    }
+
+    .gift-box img,
+    .gift-box iframe{
+      width:100%;
+      border:none;
+      border-radius:18px;
+      display:block;
+    }
+
+    .message{
+      background:rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:22px 18px;
+      line-height:1.8;
+      font-size:clamp(1rem, 3vw, 1.18rem);
+      box-shadow:0 14px 35px rgba(0,0,0,.28);
+      white-space:pre-line;
+    }
+
+    .heart{
+      animation:beat 1.2s infinite;
+      display:inline-block;
+    }
+
+    @keyframes beat{
+      0%,100%{transform:scale(1)}
+      30%{transform:scale(1.14)}
+      50%{transform:scale(.98)}
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(18px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    .floral-frame{
+      position:absolute;
+      inset:0;
+      z-index:1;
+    }
+
+    .branch{
+      stroke:#2ad05d;
+      stroke-width:4;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-dasharray:1200;
+      stroke-dashoffset:1200;
+      animation: drawBranch 3s ease forwards;
+    }
+
+    .branch.delay1{ animation-delay:.2s; }
+    .branch.delay2{ animation-delay:.5s; }
+
+    @keyframes drawBranch{
+      to{ stroke-dashoffset:0; }
+    }
+
+    .leaf{
+      opacity:0;
+      transform-origin:center;
+      animation: leafPop .7s ease forwards;
+    }
+
+    .leaf.d1{ animation-delay:1.2s; }
+    .leaf.d2{ animation-delay:1.4s; }
+    .leaf.d3{ animation-delay:1.6s; }
+    .leaf.d4{ animation-delay:1.8s; }
+    .leaf.d5{ animation-delay:2s; }
+
+    @keyframes leafPop{
+      from{ opacity:0; transform:scale(.2); }
+      to{ opacity:1; transform:scale(1); }
+    }
+
+    .flower{
+      opacity:0;
+      transform-origin:center;
+      animation: flowerBloom .9s ease forwards;
+    }
+
+    .flower.f1{ animation-delay:2.1s; }
+    .flower.f2{ animation-delay:2.3s; }
+    .flower.f3{ animation-delay:2.5s; }
+    .flower.f4{ animation-delay:2.7s; }
+
+    @keyframes flowerBloom{
+      0%{ opacity:0; transform:scale(.2) rotate(-12deg);}
+      70%{ opacity:1; transform:scale(1.08) rotate(4deg);}
+      100%{ opacity:1; transform:scale(1) rotate(0deg);}
+    }
+
+    .spark{
+      opacity:0;
+      animation: sparkle 2.2s infinite ease-in-out;
+    }
+
+    .spark.s1{ animation-delay:.4s; }
+    .spark.s2{ animation-delay:1.1s; }
+    .spark.s3{ animation-delay:1.8s; }
+    .spark.s4{ animation-delay:2.4s; }
+
+    @keyframes sparkle{
+      0%,100%{ opacity:.15; transform:scale(.7);}
+      50%{ opacity:1; transform:scale(1.3);}
+    }
+
+    .petals-layer,
+    .pollen-layer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+    }
+
+    .falling-petal{
+      position:absolute;
+      top:-30px;
+      width:18px;
+      height:26px;
+      border-radius:70% 40% 70% 40%;
+      background: radial-gradient(circle at 30% 30%, #ffbfd4, #ff5f98 60%, #b51458);
+      animation: fall linear infinite;
+      opacity:.9;
+    }
+
+    .pollen-dot{
+      position:absolute;
+      top:-20px;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background: radial-gradient(circle, #fff4ad, #ffd95f 60%, #cb9400);
+      box-shadow:0 0 8px rgba(255,217,95,.7);
+      animation: fall linear infinite;
+      opacity:.8;
+    }
+
+    @keyframes fall{
+      0%{
+        transform:translate3d(0,-20px,0) rotate(0deg);
+        opacity:0;
+      }
+      10%{opacity:1;}
+      100%{
+        transform:translate3d(var(--drift),110vh,0) rotate(360deg);
+        opacity:0;
+      }
+    }
+
+    @media (max-width:700px){
+      .scene{
+        height:88vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="petals-layer" id="petals"></div>
+  <div class="pollen-layer" id="pollen"></div>
+
+  <div class="container">
+    <div class="scene">
+      <svg class="floral-frame" viewBox="0 0 900 760" xmlns="http://www.w3.org/2000/svg">
+        <!-- RAMAS IZQUIERDA -->
+        <path class="branch" d="M420 670
+          C360 620, 290 610, 240 540
+          C190 470, 185 385, 240 310
+          C280 255, 305 205, 292 145" />
+
+        <path class="branch delay1" d="M390 660
+          C330 625, 275 635, 205 600
+          C145 570, 120 525, 112 470" />
+
+        <path class="branch delay2" d="M360 645
+          C315 625, 255 620, 205 650
+          C175 668, 152 690, 138 720" />
+
+        <!-- RAMAS DERECHA -->
+        <path class="branch" d="M480 670
+          C540 620, 610 610, 660 540
+          C710 470, 715 385, 660 310
+          C620 255, 595 205, 608 145" />
+
+        <path class="branch delay1" d="M510 660
+          C570 625, 625 635, 695 600
+          C755 570, 780 525, 788 470" />
+
+        <path class="branch delay2" d="M540 645
+          C585 625, 645 620, 695 650
+          C725 668, 748 690, 762 720" />
+
+        <!-- HOJAS IZQUIERDA -->
+        <ellipse class="leaf d1" cx="255" cy="565" rx="18" ry="42" fill="#10b446" transform="rotate(-58 255 565)" />
+        <ellipse class="leaf d2" cx="215" cy="470" rx="16" ry="38" fill="#10b446" transform="rotate(-40 215 470)" />
+        <ellipse class="leaf d3" cx="290" cy="260" rx="16" ry="42" fill="#10b446" transform="rotate(30 290 260)" />
+        <ellipse class="leaf d4" cx="325" cy="175" rx="14" ry="38" fill="#10b446" transform="rotate(48 325 175)" />
+        <ellipse class="leaf d5" cx="165" cy="620" rx="16" ry="44" fill="#10b446" transform="rotate(-70 165 620)" />
+
+        <!-- HOJAS DERECHA -->
+        <ellipse class="leaf d1" cx="645" cy="565" rx="18" ry="42" fill="#10b446" transform="rotate(58 645 565)" />
+        <ellipse class="leaf d2" cx="685" cy="470" rx="16" ry="38" fill="#10b446" transform="rotate(40 685 470)" />
+        <ellipse class="leaf d3" cx="610" cy="260" rx="16" ry="42" fill="#10b446" transform="rotate(-30 610 260)" />
+        <ellipse class="leaf d4" cx="575" cy="175" rx="14" ry="38" fill="#10b446" transform="rotate(-48 575 175)" />
+        <ellipse class="leaf d5" cx="735" cy="620" rx="16" ry="44" fill="#10b446" transform="rotate(70 735 620)" />
+
+        <!-- FLORES IZQUIERDA -->
+        <g class="flower f1" transform="translate(245 390)">
+          <ellipse cx="0" cy="-18" rx="20" ry="52" fill="#a91ee8"/>
+          <ellipse cx="-22" cy="0" rx="22" ry="54" fill="#f94b83" transform="rotate(-28)"/>
+          <ellipse cx="22" cy="0" rx="22" ry="54" fill="#f94b83" transform="rotate(28)"/>
+          <ellipse cx="-36" cy="12" rx="20" ry="46" fill="#ff5e95" transform="rotate(-52)"/>
+          <ellipse cx="36" cy="12" rx="20" ry="46" fill="#ff5e95" transform="rotate(52)"/>
+          <rect x="-8" y="48" width="16" height="42" rx="8" fill="#c8b0b7"/>
+          <line x1="0" y1="55" x2="0" y2="90" stroke="#f6a0c2" stroke-width="2"/>
+        </g>
+
+        <g class="flower f2" transform="translate(300 200) scale(.82)">
+          <ellipse cx="0" cy="-18" rx="18" ry="46" fill="#a91ee8"/>
+          <ellipse cx="-22" cy="0" rx="19" ry="48" fill="#f94b83" transform="rotate(-28)"/>
+          <ellipse cx="22" cy="0" rx="19" ry="48" fill="#f94b83" transform="rotate(28)"/>
+          <ellipse cx="-34" cy="12" rx="16" ry="40" fill="#ff5e95" transform="rotate(-52)"/>
+          <ellipse cx="34" cy="12" rx="16" ry="40" fill="#ff5e95" transform="rotate(52)"/>
+          <rect x="-7" y="42" width="14" height="34" rx="7" fill="#c8b0b7"/>
+        </g>
+
+        <!-- FLORES DERECHA -->
+        <g class="flower f3" transform="translate(655 390)">
+          <ellipse cx="0" cy="-18" rx="20" ry="52" fill="#a91ee8"/>
+          <ellipse cx="-22" cy="0" rx="22" ry="54" fill="#f94b83" transform="rotate(-28)"/>
+          <ellipse cx="22" cy="0" rx="22" ry="54" fill="#f94b83" transform="rotate(28)"/>
+          <ellipse cx="-36" cy="12" rx="20" ry="46" fill="#ff5e95" transform="rotate(-52)"/>
+          <ellipse cx="36" cy="12" rx="20" ry="46" fill="#ff5e95" transform="rotate(52)"/>
+          <rect x="-8" y="48" width="16" height="42" rx="8" fill="#c8b0b7"/>
+          <line x1="0" y1="55" x2="0" y2="90" stroke="#f6a0c2" stroke-width="2"/>
+        </g>
+
+        <g class="flower f4" transform="translate(600 200) scale(.82)">
+          <ellipse cx="0" cy="-18" rx="18" ry="46" fill="#a91ee8"/>
+          <ellipse cx="-22" cy="0" rx="19" ry="48" fill="#f94b83" transform="rotate(-28)"/>
+          <ellipse cx="22" cy="0" rx="19" ry="48" fill="#f94b83" transform="rotate(28)"/>
+          <ellipse cx="-34" cy="12" rx="16" ry="40" fill="#ff5e95" transform="rotate(-52)"/>
+          <ellipse cx="34" cy="12" rx="16" ry="40" fill="#ff5e95" transform="rotate(52)"/>
+          <rect x="-7" y="42" width="14" height="34" rx="7" fill="#c8b0b7"/>
+        </g>
+
+        <!-- DETALLES BLANCOS -->
+        <circle class="spark s1" cx="210" cy="120" r="4" fill="white"/>
+        <circle class="spark s2" cx="255" cy="445" r="3" fill="white"/>
+        <circle class="spark s3" cx="690" cy="120" r="4" fill="white"/>
+        <circle class="spark s4" cx="645" cy="445" r="3" fill="white"/>
+
+        <!-- BASE CORAZON SUAVE -->
+        <path class="branch delay2" d="M420 670 C438 700, 446 718, 450 725 C454 718, 462 700, 480 670" />
+      </svg>
+
+      <div class="center-box" id="introScreen">
+        <h1>FELIZ CUMPLEAÑOS MI AMOR</h1>
+        <div class="subtitle">Tengo un regalo para ti ✨</div>
+        <button class="btn" id="openGift">Abre tu regalo</button>
+      </div>
+
+      <div class="gift-screen" id="giftScreen">
+        <div class="gift-box">
+          <!-- Si quieres embed de Tenor, déjalo así -->
+          <div class="tenor-gif-embed"
+               data-postid="8579556020439369873"
+               data-share-method="host"
+               data-aspect-ratio="0.986547"
+               data-width="100%">
+            <a href="https://tenor.com/view/dudu-bubu-hearts-its-okay-my-girl-my-little-pony-gif-8579556020439369873">
+              Dudu Bubu Hearts Sticker
+            </a>
+          </div>
+        </div>
+
+        <div class="message"><span class="heart">💖</span>
+te amo mucho, cada día contigo es un avance, quiero que sepas que sí eres lo más importante para mí.
+
+Son tiempos difíciles para mí, no es que deje de ser detallista, pero ser adulto es difícil...
+
+Solo sé que estar a tu lado es más fácil y me siento feliz. Estando contigo vuelvo a estar feliz y olvidar los dolores.
+
+Gracias por ser mi bubu. <span class="heart">💖</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const petals = document.getElementById("petals");
+    const pollen = document.getElementById("pollen");
+    const openGift = document.getElementById("openGift");
+    const introScreen = document.getElementById("introScreen");
+    const giftScreen = document.getElementById("giftScreen");
+
+    function createPetals(){
+      for(let i=0;i<18;i++){
+        const p=document.createElement("div");
+        p.className="falling-petal";
+        p.style.left=Math.random()*100+"vw";
+        p.style.animationDuration=(7+Math.random()*6)+"s";
+        p.style.animationDelay=(Math.random()*5)+"s";
+        p.style.setProperty("--drift",(Math.random()*160-80)+"px");
+        petals.appendChild(p);
+      }
+    }
+
+    function createPollen(){
+      for(let i=0;i<40;i++){
+        const d=document.createElement("div");
+        d.className="pollen-dot";
+        d.style.left=Math.random()*100+"vw";
+        d.style.animationDuration=(4+Math.random()*4)+"s";
+        d.style.animationDelay=(Math.random()*4)+"s";
+        d.style.setProperty("--drift",(Math.random()*90-45)+"px");
+        pollen.appendChild(d);
+      }
+    }
+
+    openGift.addEventListener("click", () => {
+      introScreen.style.display = "none";
+      giftScreen.style.display = "block";
+
+      setTimeout(() => {
+        if (window.TenorEmbed && typeof window.TenorEmbed.load === "function") {
+          window.TenorEmbed.load();
+        }
+      }, 250);
+    });
+
+    createPetals();
+    createPollen();
+  </script>
+
+  <script async src="https://tenor.com/embed.js"></script>
+</body>
+</html>
